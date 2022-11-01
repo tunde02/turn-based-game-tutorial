@@ -9,6 +9,7 @@ public class MouseWorld : MonoBehaviour
 
     private static MouseWorld instance;
 
+
     private void Awake()
     {
         instance = this;
