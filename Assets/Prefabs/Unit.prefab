@@ -106,8 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7842570549255852716}
-  - component: {fileID: 7842570549255852717}
   - component: {fileID: 7705628719589539629}
+  - component: {fileID: 7842570549255852717}
+  - component: {fileID: 7179238016421063142}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -132,21 +133,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7842570549255852717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842570549255852719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e039ac2228f19944d8bb093458b524f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitAnimator: {fileID: 7890910737130460355}
-  moveSpeed: 4
-  rotateSpeed: 8
 --- !u!65 &7705628719589539629
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,6 +146,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4935016, y: 1.6812919, z: 0.32666725}
   m_Center: {x: -0.009365462, y: 0.86103517, z: -0.009615868}
+--- !u!114 &7842570549255852717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842570549255852719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e039ac2228f19944d8bb093458b524f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7179238016421063142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842570549255852719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a67bf9b4186e54ea7c16ca31bc57ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitAnimator: {fileID: 7890910737130460355}
+  moveSpeed: 4
+  rotateSpeed: 10
+  maxMoveDistance: 4
 --- !u!1001 &7842570547682907406
 PrefabInstance:
   m_ObjectHideFlags: 0
