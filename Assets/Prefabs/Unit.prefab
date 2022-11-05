@@ -173,7 +173,7 @@ MonoBehaviour:
   unitAnimator: {fileID: 7890910737130460355}
   moveSpeed: 4
   rotateSpeed: 10
-  maxMoveDistance: 4
+  maxMoveDistance: 3
 --- !u!1001 &7842570547682907406
 PrefabInstance:
   m_ObjectHideFlags: 0

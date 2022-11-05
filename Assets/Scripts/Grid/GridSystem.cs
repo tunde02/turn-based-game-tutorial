@@ -60,6 +60,16 @@ public class GridSystem
         }
     }
 
+    public int GetWidth()
+    {
+        return width;
+    }
+
+    public int GetHeight()
+    {
+        return height;
+    }
+
     public GridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectArray[gridPosition.x, gridPosition.z];
