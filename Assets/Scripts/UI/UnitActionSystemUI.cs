@@ -24,6 +24,12 @@ public class UnitActionSystemUI : MonoBehaviour
         UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
         UnitActionSystem.Instance.OnSelectedActionChanged += UnitActionSystem_OnSelectedActionChanged;
         UnitActionSystem.Instance.OnActionStarted += UnitActionSystem_OnActionStarted;
+        TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+
+        // 이벤트 등록 순서가 알맞게 되지 않아
+        // 유닛의 ActionPoint 보다 먼저 변경될 경우를 대비해
+        // 유닛의 ActionPoint 가 바뀔 때마다 UI를 업데이트
+        Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
 
         CreateUnitActionButtons();
         UpdateSelectedVisual();
@@ -65,6 +71,16 @@ public class UnitActionSystemUI : MonoBehaviour
     }
 
     private void UnitActionSystem_OnActionStarted(object sender, EventArgs e)
+    {
+        UpdateActionPointsText();
+    }
+
+    private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
+    {
+        UpdateActionPointsText();
+    }
+
+    private void Unit_OnAnyActionPointsChanged(object sender, EventArgs e)
     {
         UpdateActionPointsText();
     }
