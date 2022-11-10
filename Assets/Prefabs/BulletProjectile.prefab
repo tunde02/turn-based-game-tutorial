@@ -48,7 +48,7 @@ MonoBehaviour:
   trailRenderer: {fileID: 3022008333565036458}
   bulletHitVFXPrefab: {fileID: 507008253570724198, guid: ae92f86907964b64b8414ad14dca1737,
     type: 3}
-  bulletSpeed: 100
+  bulletSpeed: 200
 --- !u!1 &3022008333565036456
 GameObject:
   m_ObjectHideFlags: 0
