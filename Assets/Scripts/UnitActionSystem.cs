@@ -41,6 +41,9 @@ public class UnitActionSystem : MonoBehaviour
         if (isBusy)
             return;
 
+        if (!TurnSystem.Instance.IsPlayerTurn())
+            return;
+
         // 버튼 클릭 무시
         if (EventSystem.current.IsPointerOverGameObject())
             return;
@@ -98,6 +101,10 @@ public class UnitActionSystem : MonoBehaviour
                 {
                     // Same unit selected
                     if (unit == selectedUnit)
+                        return false;
+
+                    // Enemy unit selected
+                    if (unit.IsEnemy())
                         return false;
 
                     SetSelectedUnit(unit);

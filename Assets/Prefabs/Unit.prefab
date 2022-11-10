@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4986149528213356521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403706941258947996}
+  m_Layer: 7
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403706941258947996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986149528213356521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0024, y: 0.0871, z: 0.7227}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7837955059766003298}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5762467409898650888
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,8 +139,10 @@ GameObject:
   - component: {fileID: 7842570549255852716}
   - component: {fileID: 7705628719589539629}
   - component: {fileID: 7842570549255852717}
+  - component: {fileID: 5988182941138040463}
   - component: {fileID: 7179238016421063142}
   - component: {fileID: 4665066927901075649}
+  - component: {fileID: 3198802494949950160}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -159,6 +192,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e039ac2228f19944d8bb093458b524f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
+--- !u!114 &5988182941138040463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842570549255852719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed6807cfc366c44daf19ea2f3931572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7890910737130460355}
+  bulletProjectilePrefab: {fileID: 3022008333337296572, guid: 24a66c803e9e250458c890c30e5abb19,
+    type: 3}
+  shootPointTransform: {fileID: 403706941258947996}
 --- !u!114 &7179238016421063142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a67bf9b4186e54ea7c16ca31bc57ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAnimator: {fileID: 7890910737130460355}
   moveSpeed: 4
   rotateSpeed: 10
   maxMoveDistance: 3
@@ -187,6 +236,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025f47ec9d0582044be46bf6ea4b16a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3198802494949950160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842570549255852719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f18e5a43ef260443a3638d1d875528d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxShootDistance: 7
+  aimingStateTime: 1
+  shootingStateTime: 0.1
+  cooloffStateTime: 0.5
+  rotateSpeed: 10
 --- !u!1001 &7842570547682907406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,7 +358,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 25af05085d2957e42ac6b80b69ddd26a, type: 2}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4620998167008108, guid: c25ac4fdc903e7d49a7520930673ecd6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 403706941258947996}
   m_SourcePrefab: {fileID: 100100000, guid: c25ac4fdc903e7d49a7520930673ecd6, type: 3}
 --- !u!4 &7837955059766003298 stripped
 Transform:
