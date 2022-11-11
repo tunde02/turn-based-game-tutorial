@@ -8,14 +8,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private Vector3[] followOffsetArray;
     [SerializeField] private float zoomSpeed = 5f;
-    [SerializeField] private float zoomAmount = 6f;
-
-    private const float MIN_FOLLOW_Y_OFFSET = 3f;
-    private const float MAX_FOLLOW_Y_OFFSET = 15f;
 
     private CinemachineTransposer cinemachineTransposer;
     private Vector3 targetFollowOffset;
+    private int followOffsetIndex = 1;
 
 
     private void Start()
@@ -55,16 +53,15 @@ public class CameraController : MonoBehaviour
 
     private void HandleZoom()
     {
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0 && followOffsetIndex > 0)
         {
-            targetFollowOffset.y -= zoomAmount;
+            targetFollowOffset = followOffsetArray[--followOffsetIndex];
         }
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0 && followOffsetIndex < followOffsetArray.Length - 1)
         {
-            targetFollowOffset.y += zoomAmount;
+            targetFollowOffset = followOffsetArray[++followOffsetIndex];
         }
 
-        targetFollowOffset.y = Mathf.Clamp(targetFollowOffset.y, MIN_FOLLOW_Y_OFFSET, MAX_FOLLOW_Y_OFFSET);
         cinemachineTransposer.m_FollowOffset =
             Vector3.Lerp(cinemachineTransposer.m_FollowOffset, targetFollowOffset, zoomSpeed * Time.deltaTime);
     }
