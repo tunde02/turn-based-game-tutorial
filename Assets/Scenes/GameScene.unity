@@ -874,6 +874,8 @@ MonoBehaviour:
   - gridVisualType: 2
     material: {fileID: 2100000, guid: 2d68108be59dec34398c61e810d595e0, type: 2}
   - gridVisualType: 3
+    material: {fileID: 2100000, guid: e6b55fc4b7c98d046806157fdf54b4bd, type: 2}
+  - gridVisualType: 4
     material: {fileID: 2100000, guid: 2ec2124e2f0fd3541a317f859f5dea0d, type: 2}
 --- !u!4 &355479488
 Transform:
