@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
         Busy
     }
 
-    private State state;
+    [SerializeField] private State state;
     private float timer;
 
 
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
                     }
                     else
                     {
-                        // No more enemies have actions they can take
+                        // No more enemies have actions they can take,
                         // so end enemy turn
                         TurnSystem.Instance.NextTurn();
                     }
@@ -87,19 +87,41 @@ public class EnemyAI : MonoBehaviour
 
     private bool TryTakeEnemyAIAction(Unit enemyUnit, Action onEnemyAIActionComplete)
     {
-        SpinAction spinAction = enemyUnit.GetSpinAction();
-        GridPosition actionGridPosition = enemyUnit.GetGridPosition();
+        EnemyAIAction bestEnemyAIAction = null;
+        BaseAction bestBaseAction = null;
 
-        // Invalid GridPosition
-        if (!spinAction.IsValidGridPosition(actionGridPosition))
+        foreach (BaseAction baseAction in enemyUnit.GetBaseActionArray())
+        {
+            if (!enemyUnit.CanSpendActionPoints(baseAction))
+            {
+                // Enemy cannot afford this action
+                continue;
+            }
+
+            if (bestEnemyAIAction == null)
+            {
+                bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
+                bestBaseAction = baseAction;
+            }
+            else
+            {
+                EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
+                if (testEnemyAIAction != null && testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue)
+                {
+                    bestEnemyAIAction = testEnemyAIAction;
+                    bestBaseAction = baseAction;
+                }
+            }
+        }
+
+        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPoints(bestBaseAction))
+        {
+            bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, onEnemyAIActionComplete);
+            return true;
+        }
+        else
+        {
             return false;
-
-        // Not enough ActionPoints
-        if (!enemyUnit.TrySpendActionPoints(spinAction))
-            return false;
-
-        spinAction.TakeAction(actionGridPosition, onEnemyAIActionComplete);
-
-        return true;
+        }
     }
 }
