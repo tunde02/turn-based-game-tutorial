@@ -15,9 +15,6 @@ public class Unit : MonoBehaviour
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
-    private MoveAction moveAction;
-    private SpinAction spinAction;
-    private ShootAction shootAction;
     private BaseAction[] baseActionArray;
     private int actionPoints = MAX_ACTION_POINTS;
 
@@ -25,9 +22,6 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
-        moveAction = GetComponent<MoveAction>();
-        spinAction = GetComponent<SpinAction>();
-        shootAction = GetComponent<ShootAction>();
         baseActionArray = GetComponents<BaseAction>();
     }
 
@@ -62,19 +56,17 @@ public class Unit : MonoBehaviour
         return gridPosition;
     }
 
-    public MoveAction GetMoveAction()
+    public T GetAction<T>() where T : BaseAction
     {
-        return moveAction;
-    }
+        foreach (BaseAction baseAction in baseActionArray)
+        {
+            if (baseAction is T)
+            {
+                return (T)baseAction;
+            }
+        }
 
-    public SpinAction GetSpinAction()
-    {
-        return spinAction;
-    }
-
-    public ShootAction GetShootAction()
-    {
-        return shootAction;
+        return null;
     }
 
     public BaseAction[] GetBaseActionArray()
