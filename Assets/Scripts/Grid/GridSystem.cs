@@ -56,7 +56,7 @@ public class GridSystem<TGridObject>
                 );
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
 
-                gridDebugObject.SetGridObject(GetGridObject(gridPosition) as GridObject);
+                gridDebugObject.SetGridObject(GetGridObject(gridPosition));
             }
         }
     }
