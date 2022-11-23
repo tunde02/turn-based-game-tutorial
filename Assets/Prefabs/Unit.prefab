@@ -645,6 +645,9 @@ MonoBehaviour:
   shootingStateTime: 0.1
   cooloffStateTime: 0.5
   rotateSpeed: 10
+  obstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8331074768495903677
 GameObject:
   m_ObjectHideFlags: 0

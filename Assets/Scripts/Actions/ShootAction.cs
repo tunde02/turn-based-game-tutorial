@@ -10,6 +10,7 @@ public class ShootAction : BaseAction
     [SerializeField] private float shootingStateTime = 0.1f;
     [SerializeField] private float cooloffStateTime = 0.5f;
     [SerializeField] private float rotateSpeed = 10f;
+    [SerializeField] private LayerMask obstaclesLayerMask;
 
     public class OnShootEventArgs : EventArgs
     {
@@ -125,10 +126,22 @@ public class ShootAction : BaseAction
                 if (!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
                     continue;
 
-                Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
-
                 // Both Units on same team
+                Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
                 if (targetUnit.IsEnemy() == unit.IsEnemy())
+                    continue;
+
+                // Blocked by an obstacle
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDirection = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                float unitShoulderHeight = 1.7f;
+                bool HasObstaclesInShootDirection = Physics.Raycast(
+                    origin: unitWorldPosition + Vector3.up * unitShoulderHeight,
+                    direction: shootDirection,
+                    maxDistance: Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+                    layerMask: obstaclesLayerMask
+                );
+                if (HasObstaclesInShootDirection)
                     continue;
 
                 validGridPositionList.Add(testGridPosition);
