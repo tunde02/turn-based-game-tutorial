@@ -27,9 +27,9 @@ public class UnitRagdoll : MonoBehaviour
             {
                 cloneChild.position = child.position;
                 cloneChild.rotation = child.rotation;
-            }
 
-            MatchAllChildTransforms(child, cloneChild);
+                MatchAllChildTransforms(child, cloneChild);
+            }
         }
     }
 
