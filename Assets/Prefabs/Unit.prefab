@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 3198802494949950160}
   - component: {fileID: -2525146011362076417}
   - component: {fileID: -8209729598399256055}
+  - component: {fileID: 3424644193010691831}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -823,6 +824,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordDamage: 100
+--- !u!114 &3424644193010691831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842570549255852719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6cd1e5f8046894a9e19c3ce867ba2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8331074768495903677
 GameObject:
   m_ObjectHideFlags: 0
