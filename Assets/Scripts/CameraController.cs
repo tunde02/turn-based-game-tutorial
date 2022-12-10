@@ -31,33 +31,30 @@ public class CameraController : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 moveVector = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
+        Vector2 inputMoveDir = InputManager.Instance.GetCameraMoveVector();
+        Vector3 moveVector = transform.forward * inputMoveDir.y + transform.right * inputMoveDir.x;
+
         transform.position += moveVector * moveSpeed * Time.deltaTime;
+
     }
 
     private void HandleRotation()
     {
         Vector3 rotationVector = new Vector3(0, 0, 0);
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            rotationVector.y = 1f;
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            rotationVector.y = -1f;
-        }
-
+        rotationVector.y = InputManager.Instance.GetCameraRotateAmount();
         transform.eulerAngles += rotationVector * rotationSpeed * Time.deltaTime;
     }
 
     private void HandleZoom()
     {
-        if (Input.mouseScrollDelta.y > 0 && followOffsetIndex > 0)
+        float scrollDelta = InputManager.Instance.GetCameraZoomAmount();
+
+        if (scrollDelta > 0 && followOffsetIndex > 0)
         {
             targetFollowOffset = followOffsetArray[--followOffsetIndex];
         }
-        if (Input.mouseScrollDelta.y < 0 && followOffsetIndex < followOffsetArray.Length - 1)
+        if (scrollDelta < 0 && followOffsetIndex < followOffsetArray.Length - 1)
         {
             targetFollowOffset = followOffsetArray[++followOffsetIndex];
         }
